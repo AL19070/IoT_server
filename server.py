@@ -11,6 +11,16 @@ def get_html():
 def update_lux():
     time = request.form["time"]
     lux = request.form["lux"]
+    lux_int = int(lux)
+    if lux_int == 0:
+        lux = "真っ暗"
+    elif lux_int > 0 and lux_int < 40:
+        lux = "暗い"
+    elif lux_int > 40 and lux_int < 90:
+        lux = "明るい"
+    else :
+        lux = "とても明るい"
+        
     try:
         f = open(file_path,'w')
         f.write(time+","+lux)
